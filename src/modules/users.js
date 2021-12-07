@@ -27,7 +27,6 @@ export const getUsers = () => async (dispatch) => {
 
 const initialState = {
   users: null,
-  user: null,
   loading: {
     users: false,
     user: false,
@@ -43,31 +42,20 @@ function users(state = initialState, action) {
     case GET_USERS_PENDING:
       return {
         ...state,
-        loading: {
-          ...state.loading,
-          users: true,
-        },
+        loading: { ...state.loading, users: true },
+        error: { ...state.error, users: null },
       };
     case GET_USERS_SUCCESS:
       return {
         ...state,
-        loading: {
-          ...state.loading,
-          users: false,
-        },
+        loading: { ...state.loading, users: false },
         users: action.payload.data,
       };
     case GET_USERS_FAILURE:
       return {
         ...state,
-        loading: {
-          ...state.loading,
-          users: false,
-        },
-        error: {
-          ...state.error,
-          users: action.payload,
-        },
+        loading: { ...state.loading, users: false },
+        error: { ...state.error, users: action.payload },
       };
     default:
       return state;
