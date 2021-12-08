@@ -2,6 +2,7 @@ import React from 'react';
 import Users from '../components/Users';
 import { connect } from 'react-redux';
 import { getUsers } from '../modules/users';
+import { Preloader } from '../library/PreloadContext';
 
 const { useEffect } = React;
 
@@ -14,6 +15,7 @@ const UsersContainer = ({ users, getUsers }) => {
   return (
     <>
       <Users users={users} />
+      <Preloader resolve={getUsers} />
     </>
   );
 };
